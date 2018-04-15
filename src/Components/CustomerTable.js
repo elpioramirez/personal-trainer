@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-export default class MainTable extends Component {
+export default class CustomerTable extends Component {
   render() {
     const columns = [
       {
@@ -33,27 +33,21 @@ export default class MainTable extends Component {
       {
         Header: "phone",
         accessor: "phone"
-      }]
-
-     const tt = this.props.customers
- console.log('====================================');
- console.log(tt);
- console.log('====================================');
-
-    // const data = [{
-    //   name: 'Tanner Linsley',
-    //   age: 26,
-    //   friend: {
-    //     name: 'Jason Maurer',
-    //     age: 23,
-    //   }
-    // }]
-  
+      }
+    ];
 
     return (
-      <div>
-        <ReactTable data={tt} columns={columns} />
-      </div>
+      // <div>
+      //   <h1>hola</h1>
+
+      // </div>
+
+      <ReactTable
+        data={this.props.customers}
+        columns={columns}
+        defaultPageSize={30}
+        filterable={true}
+      />
     );
   }
 }
