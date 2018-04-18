@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-
 
 // import CustomerTable from "./Components/CustomerTable";
 import StrapTable from "./BootstrapTable";
@@ -13,15 +11,15 @@ class App extends Component {
     super(props);
     this.state = {
       customers: [],
-      trainings : [],
-    }
+      trainings: []
+    };
     // This binding is necessary to make `this` work in the callback
     this.fetchData = this.fetchData.bind(this);
   }
 
   componentDidMount() {
-    this.fetchData('customers')
-    this.fetchData('trainings')
+    this.fetchData("customers");
+    this.fetchData("trainings");
   }
 
   fetchData(param) {
@@ -38,17 +36,15 @@ class App extends Component {
       });
   }
 
-
   render() {
-
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          {/* <h1 className="App-title">Welcome to React</h1> */}
         </header>
         {/* <CustomerTable customers={this.state.customers}/> */}
-        <StrapTable customers={this.state.customers}/>
+        <StrapTable customers={this.state.customers} />
       </div>
     );
   }
