@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 
-import CustomerTable from "./Components/CustomerTable";
+// import CustomerTable from "./Components/CustomerTable";
+import StrapTable from "./BootstrapTable";
 // import CustomerTable from "./Components/CustomerTable"
 
 class App extends Component {
@@ -45,7 +47,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <CustomerTable customers={this.state.customers}/>
+        {/* <CustomerTable customers={this.state.customers}/> */}
+        <StrapTable customers={this.state.customers}/>
       </div>
     );
   }
