@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -9,45 +9,31 @@ export default class CustomerTable extends Component {
       {
         Header: "firstname",
         accessor: "firstname"
-      },
-      {
+      }, {
         Header: "lastname",
         accessor: "lastname"
-      },
-      {
+      }, {
         Header: "streetaddress",
         accessor: "streetaddress"
-      },
-      {
+      }, {
         Header: "postcode",
         accessor: "postcode"
-      },
-      {
+      }, {
         Header: "city",
         accessor: "city"
-      },
-      {
+      }, {
         Header: "email",
         accessor: "email"
-      },
-      {
+      }, {
         Header: "phone",
         accessor: "phone"
       }
     ];
 
-    return (
-      // <div>
-      //   <h1>hola</h1>
-
-      // </div>
-
-      <ReactTable
-        data={this.props.customers}
-        columns={columns}
-        defaultPageSize={30}
-        filterable={true}
-      />
-    );
+    return (<ReactTable
+      data={this.props.customers}
+      columns={columns}
+      defaultPageSize={30}
+      filterable={true}/>);
   }
 }
