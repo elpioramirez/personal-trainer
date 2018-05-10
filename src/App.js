@@ -3,9 +3,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import {BrowserRouter, Route, Switch, Link} from "react-router-dom";
 
+import NavDrawer from "./Components/NavDrawer";
+
 import StrapTable from "./Components/BootstrapTable";
-import NavDrawer from "./Components/Drawer";
-import Drawer from "material-ui/Drawer/Drawer";
+
+import AddCustomer from "./Routes/AddCustomer";
 
 // import CustomerTable from "./Components/CustomerTable"
 
@@ -46,21 +48,23 @@ class App extends Component {
 
         <BrowserRouter>
           <div>
-            <Link to="/">Root</Link>
+
             <Link to="/home">Home</Link>
             <Link to="/customers">Customers</Link>
             <Link to="/trainers">Trainers</Link>
             <Link to="/calendar">Calendar</Link>
+            <Link to="/addCustomer">Add a Customer</Link>
+
+            <NavDrawer/>
             <Switch>
               <Route exact path="/" render={() => <h2>this is root!</h2>}/>
-              <Route path="/customers" component={Drawer}/>
+              <Route path="/addCustomer" component={AddCustomer}/>
 
             </Switch>
           </div>
         </BrowserRouter>
         {/* <CustomerTable customers={this.state.customers}/> */}
 
-        <NavDrawer/>
         <StrapTable customers={this.state.customers}/>
 
       </div>
