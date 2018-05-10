@@ -1,7 +1,8 @@
 import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
 
 export default class NavDrawer extends React.Component {
 
@@ -21,7 +22,10 @@ export default class NavDrawer extends React.Component {
     render() {
         return (
             <div>
-                <RaisedButton label="Open Drawer" onClick={this.handleToggle}/>
+                <AppBar
+                    title="Front"
+                    iconClassNameRight="muidocs-icon-navigation-expand-more"
+                    onClick={this.handleToggle}/> {/* <RaisedButton label="Open Drawer" onClick={this.handleToggle}/> */}
                 <Drawer
                     docked={false}
                     width={200}

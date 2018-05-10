@@ -1,8 +1,11 @@
 import React, {Component} from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import {BrowserRouter, Route, Switch, Link} from "react-router-dom";
+
 import StrapTable from "./Components/BootstrapTable";
 import NavDrawer from "./Components/Drawer";
+import Drawer from "material-ui/Drawer/Drawer";
 
 // import CustomerTable from "./Components/CustomerTable"
 
@@ -40,9 +43,26 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo"/>
         </header>
+
+        <BrowserRouter>
+          <div>
+            <Link to="/">Root</Link>
+            <Link to="/home">Home</Link>
+            <Link to="/customers">Customers</Link>
+            <Link to="/trainers">Trainers</Link>
+            <Link to="/calendar">Calendar</Link>
+            <Switch>
+              <Route exact path="/" render={() => <h2>this is root!</h2>}/>
+              <Route path="/customers" component={Drawer}/>
+
+            </Switch>
+          </div>
+        </BrowserRouter>
         {/* <CustomerTable customers={this.state.customers}/> */}
-        <StrapTable customers={this.state.customers}/>
+
         <NavDrawer/>
+        <StrapTable customers={this.state.customers}/>
+
       </div>
     );
   }
