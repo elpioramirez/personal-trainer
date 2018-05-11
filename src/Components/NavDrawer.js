@@ -6,9 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 // import MenuList from 'material-ui/MenuList'; import RaisedButton from
 // 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
-import {NavLink} from 'react-router-dom';
 
-import {ListItem, ListItemText} from 'material-ui/List/';
 export default class NavDrawer extends React.Component {
 
     constructor(props) {
@@ -37,7 +35,7 @@ export default class NavDrawer extends React.Component {
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({open})}>
 
-                    <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
+                    <MenuItem containerElement={< Link to = "/home" />}>Home</MenuItem>
                     <MenuItem
                         primaryText="Add A customer"
                         containerElement={< Link to = "/addCustomer" />}/> {/* // <Link to="/customers">Customers</Link>

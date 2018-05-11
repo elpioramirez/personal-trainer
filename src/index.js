@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
-// import
-// 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const MyApp = () => (
   <MuiThemeProvider>
-    <App/>
+    <Provider store={store}>
+      <App/>
+    </Provider>
   </MuiThemeProvider>
 );
 
