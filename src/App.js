@@ -9,16 +9,15 @@ import NavDrawer from "./Components/NavDrawer";
 import StrapTable from "./Components/BootstrapTable";
 
 import AddCustomer from "./Routes/AddCustomer";
+import Home from "./Routes/Home";
+import Customers from "./Routes/Customers";
+import Trainers from "./Routes/Trainers";
+import Calendar from "./Routes/Calendar";
 
 // import CustomerTable from "./Components/CustomerTable"
 
 class App extends Component {
-  // constructor(props) {   super(props);   this.state = {     customers: [],
-  // trainings: []   };   // This binding is necessary to make `this` work in the
-  // callback   this.fetchData = this     .fetchData     .bind(this); }
-
   componentDidMount() {
-    // this.fetchData("customers"); this.fetchData("trainings");
 
     this
       .props
@@ -27,14 +26,7 @@ class App extends Component {
       .props
       .getAllTrainers();
 
-    console.log(this.props);
-
   }
-
-  // fetchData(param) {   const path =
-  // `https://customerrest.herokuapp.com/api/${param}`; fetch(path).then(response
-  // => {     return response.json(); }).then(jsonResponse => {
-  // this.setState({[param]: jsonResponse.content});   }); }
 
   render() {
     return (
@@ -54,15 +46,17 @@ class App extends Component {
 
             <NavDrawer/>
             <Switch>
-              <Route exact path="/" render={() => <h2>this is root!</h2>}/>
+              <Route exact path="/" component={Home}/>
+              <Route path="/home" component={Home}/>
+              <Route path="/customers" component={Customers}/>
+              <Route path="/trainers" component={Trainers}/>
+              <Route path="/calendar" component={Calendar}/>
               <Route path="/addCustomer" component={AddCustomer}/>
 
             </Switch>
           </div>
         </BrowserRouter>
         {/* <CustomerTable customers={this.state.customers}/> */}
-
-        <StrapTable customers={this.props.customers}/>
 
       </div>
     );
@@ -73,6 +67,7 @@ const mapStateToProps = state => {
   return {customers: state.customer.customers, trainings: state.training.trainers};
 };
 
+//fetch needed data
 const mapDispatchToProps = dispatch => {
   return {
     getAllCustomers: () => getAllCustomers(dispatch),
