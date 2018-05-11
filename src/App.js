@@ -3,10 +3,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
-import {getAllCustomers, getAllTrainers} from './actions'
-import NavDrawer from "./Components/NavDrawer";
+import {getAllCustomers, getAllTrainers} from './actions';
 
-import StrapTable from "./Components/BootstrapTable";
+import NavDrawer from "./Components/NavDrawer";
 
 import AddCustomer from "./Routes/AddCustomer";
 import Home from "./Routes/Home";

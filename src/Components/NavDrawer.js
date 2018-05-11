@@ -37,6 +37,7 @@ export default class NavDrawer extends React.Component {
 
                     <MenuItem containerElement={< Link to = "/home" />}>Home</MenuItem>
                     <MenuItem containerElement={< Link to = "/customers" />}>Customers</MenuItem>
+                    <MenuItem containerElement={< Link to = "/trainers" />}>Trainings</MenuItem>
                     <MenuItem
                         primaryText="Add A customer"
                         containerElement={< Link to = "/addCustomer" />}/> {/* // <Link to="/customers">Customers</Link>
