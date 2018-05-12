@@ -55,8 +55,9 @@ export function editCustomer(id, dispatch) {
 
 export function getAllTrainers(dispatch) {
     return axios
-        .get(`${ROOT_URL}/trainings`)
-        .then(response => dispatch(receiveData(GET_ALL_TRAINERS, response.data.content)));
+        .get("https://customerrest.herokuapp.com/gettrainings")
+        .then(response => dispatch(receiveData(GET_ALL_TRAINERS, response.data)));
+
 }
 
 export function deleteTraining(id, dispatch) {

@@ -1,59 +1,46 @@
 import React, {Component} from 'react';
-import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
-import cellEditFactory from "react-bootstrap-table2-editor";
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+// import BootstrapTable from "react-bootstrap-table-next"; import
+// filterFactory, {textFilter} from "react-bootstrap-table2-filter"; import
+// cellEditFactory from "react-bootstrap-table2-editor";
 
-class TrainingTable extends Component {
+export default class TrainingTable extends Component {
     render() {
         const columns = [
             {
-                dataField: "date",
-                text: "date",
-                sort: true,
-                filter: textFilter(),
-                headerAlign: "center"
+                Header: "date",
+                accessor: "date"
             }, {
-                dataField: "duration",
-                text: "duration",
-                sort: true,
-                filter: textFilter(),
-                headerAlign: "center"
+                Header: "activity",
+                accessor: "activity"
             }, {
-                dataField: "activity",
-                text: "activity",
-                sort: true,
-                filter: textFilter(),
-                headerAlign: "center"
+                Header: "customer",
+                accessor: "customer.firstname"
             }, {
-                dataField: "customer",
-                text: "customer",
-                sort: true,
-                filter: textFilter(),
-                headerAlign: "center"
+                Header: "delete",
+                accessor: "id",
+                filterable: false,
+                sortable: false,
+                Cell: ({value}) => (
+                    <button
+                        onClick={() => {
+                        this
+                            .props
+                            .deleteTraining(value)
+                            .then(() => this.props.getAllTrainers());
+                    }}>delete</button>
+                )
             }
         ];
         return (
             <div>
-                <BootstrapTable
-                    keyField="date"
+                <ReactTable
                     data={this.props.trainings}
                     columns={columns}
-                    striped
-                    hover
-                    noDataIndication="No trainings at the moment"
-                    filter={filterFactory()}
-                    cellEdit={cellEditFactory({
-                    mode: "click",
-                    beforeSaveCell: (oldValue, newValue, row, column) => {
-                        console.log("Before Saving Cell!!");
-                    },
-                    afterSaveCell: (oldValue, newValue, row, column) => {
-                        console.log("After Saving Cell!!");
-                    }
-                })}/>
+                    defaultPageSize={30}
+                    filterable={true}/>
             </div>
         );
     }
 }
-
-export default TrainingTable;

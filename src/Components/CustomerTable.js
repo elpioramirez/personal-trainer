@@ -6,9 +6,7 @@ import "react-table/react-table.css";
 import CustomerForm from "./CustomerForm";
 
 export default class CustomerTable extends Component {
-  _executeBeforeModalOpen(v) {
-    alert('v =' + v);
-  }
+
   render() {
     const columns = [
       {
@@ -70,9 +68,9 @@ export default class CustomerTable extends Component {
 
         <SkyLight
           hideOnOverlayClicked
-          beforeOpen={this._executeBeforeModalOpen}
           ref={ref => this.animated = ref}
-          transitionDuration={1000}>
+          transitionDuration={500}>
+          <h1>New Customer</h1>
           <CustomerForm onSubmit={this.props.addCustomer}/>
         </SkyLight>
       </div>
