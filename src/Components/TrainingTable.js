@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import * as moment from 'moment';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 
 export default class TrainingTable extends Component {
     render() {
@@ -40,6 +41,27 @@ export default class TrainingTable extends Component {
                             .deleteTraining(value)
                             .then(() => this.props.getAllTrainers());
                     }}>delete</button>
+                )
+            }, {
+                Header: "customer",
+                accessor: "customer",
+                filterable: false,
+                sortable: false,
+                Cell: ({value}) => (
+                    <Card>
+                        <CardHeader
+                            title={value.firstname}
+                            subtitle={value.lastname}
+                            actAsExpander={true}
+                            showExpandableButton={true}/>
+
+                        <CardText expandable={true}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium
+                            massa. Aliquam erat volutpat. Nulla facilisi. Donec vulputate interdum
+                            sollicitudin. Nunc lacinia auctor quam sed pellentesque. Aliquam dui mauris,
+                            mattis quis lacus id, pellentesque lobortis odio.
+                        </CardText>
+                    </Card>
                 )
             }
         ];

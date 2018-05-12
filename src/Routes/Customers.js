@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {deleteCustumer, getAllCustomers, addCustomer, getTrainingsById} from '../actions/index';
 import CustomerTable from '../Components/CustomerTable';
 import Caption from '../Components/Caption';
+import PopUpById from '../Components/PopUpById';
 
 class Customers extends Component {
 
@@ -17,7 +18,9 @@ class Customers extends Component {
 
         return (
             <div>
+                <PopUpById/>
                 <Caption title="Customers"/>
+
                 <CustomerTable
                     customers={this.props.customers}
                     deleteCustumer={this.props.deleteCustumer}

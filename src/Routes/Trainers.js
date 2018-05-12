@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {getAllTrainers, deleteTraining} from '../actions/index';
 import Caption from '../Components/Caption';
 import TrainingTable from '../Components/TrainingTable';
-import PopUpById from '../Components/PopUpById';
 
 class Trainers extends Component {
     // componentDidMount() {     this         .props         .getAllTrainers(); }
@@ -16,7 +15,7 @@ class Trainers extends Component {
                     trainings={this.props.trainings}
                     deleteTraining={this.props.deleteTraining}
                     getAllTrainers={this.props.getAllTrainers}/>
-                <PopUpById/>
+
             </div>
         );
     }
