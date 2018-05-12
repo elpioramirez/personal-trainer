@@ -4,10 +4,14 @@ export const GET_ALL_CUSTOMERS = 'GET_ALL_CUSTOMERS';
 export const ADD_CUSTOMER = 'ADD_CUSTOMER';
 export const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
 export const EDIT_CUSTOMER = 'EDIT_CUSTOMER';
+export const GET_TRAININGS_BY_ID = 'GET_TRAININGS_BY_ID'
 
 export const GET_ALL_TRAINERS = 'GET_ALL_TRAINERS';
 export const ADD_TRAINING_TO_CUSTOMER = 'ADD_TRAINING_TO_CUSTOMER';
 export const DELETE_TRAINING = 'DELETE_TRAINING';
+
+export const POP_ON = 'POP_ON';
+export const POP_OFF = 'POP_OFF';
 
 const ROOT_URL = 'https://customerrest.herokuapp.com/api'
 
@@ -80,5 +84,16 @@ export function addTraining(trainingSession) {
         })
         .catch(err => {
             console.error(err);
+        });
+}
+
+export function getTrainingsById(path, dispatch) {
+    return axios
+        .get(path)
+        .then(response => dispatch(receiveData(GET_TRAININGS_BY_ID, response.data.content)))
+        // .then(() => {     window.location = "/IndividualTraining" })
+        .catch(err => {
+            console.error(err);
+
         });
 }

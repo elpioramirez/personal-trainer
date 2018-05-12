@@ -12,6 +12,7 @@ import Home from "./Routes/Home";
 import Customers from "./Routes/Customers";
 import Trainers from "./Routes/Trainers";
 import Calendar from "./Routes/Calendar";
+import IndividualTraining from "./Routes/IndividualTraining";
 
 // import CustomerTable from "./Components/CustomerTable"
 
@@ -51,6 +52,7 @@ class App extends Component {
               <Route path="/trainers" component={Trainers}/>
               <Route path="/calendar" component={Calendar}/>
               <Route path="/NewCustomer" component={NewCustomer}/>
+              <Route path="/IndividualTraining" component={IndividualTraining}/>
 
             </Switch>
           </div>

@@ -14,6 +14,7 @@ export default function (state = {}, action) {
             };
         case DELETE_TRAINING:
             return state;
+
         default:
             return state;
     }

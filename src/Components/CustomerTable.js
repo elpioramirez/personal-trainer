@@ -47,12 +47,18 @@ export default class CustomerTable extends Component {
         )
       }, {
 
-        Header: "Training",
-        accessor: 'links[0].href',
+        Header: "Show trainings",
+        accessor: 'links[2].href',
         filterable: false,
         sortable: false,
         Cell: ({value}) => (
-          <button onClick={() => this.animated.show()}>Add Training</button>
+          <button
+            onClick={() => {
+            this
+              .props
+              .getTrainingsById(value)
+          }}>
+            All Trainings</button>
         )
       }
     ];

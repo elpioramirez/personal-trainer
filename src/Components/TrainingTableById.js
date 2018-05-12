@@ -3,7 +3,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import * as moment from 'moment';
 
-export default class TrainingTable extends Component {
+export default class TrainingTableById extends Component {
     render() {
         const columns = [
             {
@@ -25,28 +25,14 @@ export default class TrainingTable extends Component {
                 Header: "activity",
                 accessor: "activity"
             }, {
-                Header: "customer",
-                accessor: "customer.firstname"
-            }, {
-                Header: "delete",
-                accessor: "id",
-                filterable: false,
-                sortable: false,
-                Cell: ({value}) => (
-                    <button
-                        onClick={() => {
-                        this
-                            .props
-                            .deleteTraining(value)
-                            .then(() => this.props.getAllTrainers());
-                    }}>delete</button>
-                )
+                Header: "duration",
+                accessor: "duration"
             }
         ];
         return (
             <div>
                 <ReactTable
-                    data={this.props.trainings}
+                    data={this.props.individualTraining}
                     columns={columns}
                     defaultPageSize={30}
                     filterable={true}/>
