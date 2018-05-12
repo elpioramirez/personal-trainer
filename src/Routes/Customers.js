@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 
-import {deleteCustumer, getAllCustomers} from '../actions/index';
+import {deleteCustumer, getAllCustomers, addCustomer} from '../actions/index';
 import CustomerTable from '../Components/CustomerTable';
 import Caption from '../Components/Caption';
 
@@ -21,7 +21,8 @@ class Customers extends Component {
                 <CustomerTable
                     customers={this.props.customers}
                     deleteCustumer={this.props.deleteCustumer}
-                    getAllCustomers={this.props.getAllCustomers}/>
+                    getAllCustomers={this.props.getAllCustomers}
+                    addCustomer={this.props.addCustomer}/>
 
             </div>
         );
@@ -31,7 +32,8 @@ class Customers extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         deleteCustumer: id => deleteCustumer(id, dispatch),
-        getAllCustomers: () => getAllCustomers(dispatch)
+        getAllCustomers: () => getAllCustomers(dispatch),
+        addCustomer: newCustomer => addCustomer(newCustomer, dispatch)
     };
 };
 

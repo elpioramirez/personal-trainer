@@ -1,9 +1,14 @@
 import React, {Component} from "react";
+import SkyLight from 'react-skylight';
 
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import CustomerForm from "./CustomerForm";
 
 export default class CustomerTable extends Component {
+  _executeBeforeModalOpen(v) {
+    alert('v =' + v);
+  }
   render() {
     const columns = [
       {
@@ -42,14 +47,37 @@ export default class CustomerTable extends Component {
               .then(() => this.props.getAllCustomers());
           }}>delete</button>
         )
+      }, {
+
+        Header: "Training",
+        accessor: 'links[0].href',
+        filterable: false,
+        sortable: false,
+        Cell: ({value}) => (
+          <button onClick={() => this.animated.show()}>Add Training</button>
+        )
       }
     ];
 
-    return (<ReactTable
-      data={this.props.customers}
-      columns={columns}
-      defaultPageSize={30}
-      filterable={true}/>);
+    return (
+      <div>
+        <button onClick={() => this.animated.show()}>New Customer</button>
+        <ReactTable
+          data={this.props.customers}
+          columns={columns}
+          defaultPageSize={30}
+          filterable={true}/>
+
+        <SkyLight
+          hideOnOverlayClicked
+          beforeOpen={this._executeBeforeModalOpen}
+          ref={ref => this.animated = ref}
+          transitionDuration={1000}>
+          <CustomerForm onSubmit={this.props.addCustomer}/>
+        </SkyLight>
+      </div>
+
+    );
 
   }
 }

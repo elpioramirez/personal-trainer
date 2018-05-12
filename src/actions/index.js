@@ -69,3 +69,15 @@ export function deleteTraining(id, dispatch) {
 }
 
 //add training to customer missing!
+export function addTraining(trainingSession) {
+    return axios
+        .post(`${ROOT_URL}/trainings/`, trainingSession)
+        .then(() => {
+            console.log("new training sesh added! success!");
+            window.location = "/trainings"
+            // window.location = "/";
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
