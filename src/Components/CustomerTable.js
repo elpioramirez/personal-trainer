@@ -27,6 +27,21 @@ export default class CustomerTable extends Component {
       }, {
         Header: "phone",
         accessor: "phone"
+      }, {
+        id: 'delete',
+        Header: "Delete",
+        accessor: 'links[0].href',
+        filterable: false,
+        sortable: false,
+        Cell: ({value}) => (
+          <button
+            onClick={() => {
+            this
+              .props
+              .deleteCustumer(value)
+              .then(() => this.props.getAllCustomers());
+          }}>delete</button>
+        )
       }
     ];
 
@@ -35,5 +50,6 @@ export default class CustomerTable extends Component {
       columns={columns}
       defaultPageSize={30}
       filterable={true}/>);
+
   }
 }

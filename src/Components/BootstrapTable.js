@@ -52,13 +52,29 @@ class StrapTable extends Component {
         sort: true,
         headerAlign: "center",
         filter: textFilter()
+      }, {
+        dataField: "links[0].href",
+        text: "Delete",
+        sort: true,
+        headerAlign: "center",
+        filter: textFilter(),
+        events: {
+          onClick: (dataField) => console.log(dataField)
+        }
       }
     ];
+
+    const rowEvents = {
+      onClick: (e, row, rowIndex) => {
+        alert(`clicked on row with index: ${rowIndex}`);
+      }
+    };
 
     return (
       <div>
         <BootstrapTable
-          keyField="id"
+          rowEvents={rowEvents}
+          keyField="links[0].href"
           data={this.props.customers}
           columns={columns}
           striped

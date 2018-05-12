@@ -27,7 +27,7 @@ export function addCustomer(newCustomer) {
         .post(`${ROOT_URL}/customers/`, newCustomer)
         .then(() => {
             console.log("new customer posted! success!");
-            window.location = "/"
+            window.location = "/customers"
             // window.location = "/";
         })
         .catch(err => {
@@ -35,9 +35,9 @@ export function addCustomer(newCustomer) {
         });
 }
 
-export function deleteCustumer(id, dispatch) {
+export function deleteCustumer(deleteURL, dispatch) {
     return axios
-        .delete(`${ROOT_URL}/customers/${id}`)
+        .delete(deleteURL)
         .then(response => dispatch(receiveData(DELETE_CUSTOMER, response.data)))
         .catch(err => {
             console.error(err);
