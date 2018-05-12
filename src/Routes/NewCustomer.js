@@ -8,10 +8,8 @@ class NewCustomer extends Component {
     render() {
         return (
             <div>
-
                 <Caption title="Add a new Customer"/>
                 <CustomerForm onSubmit={this.props.addCustomer}/>
-
             </div>
         );
     }

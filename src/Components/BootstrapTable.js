@@ -3,9 +3,9 @@ import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import cellEditFactory from "react-bootstrap-table2-editor";
 // ... function priceFormatter(column, colIndex, { sortElement, filterElement })
-// {   return (     <div style={ { display: 'flex', flexDirection: 'column' }
-// }>       { filterElement }       { column.text }       { sortElement } </div>
-// ); }
+// {   return (     <div style={ { display: 'flex', flexDirection: 'column' } }>
+//       { filterElement }       { column.text }       { sortElement } </div> );
+// }
 
 class StrapTable extends Component {
   render() {
@@ -58,7 +58,7 @@ class StrapTable extends Component {
     return (
       <div>
         <BootstrapTable
-          keyField="email"
+          keyField="id"
           data={this.props.customers}
           columns={columns}
           striped

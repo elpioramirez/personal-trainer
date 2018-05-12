@@ -27,6 +27,7 @@ export function addCustomer(newCustomer) {
         .post(`${ROOT_URL}/customers/`, newCustomer)
         .then(() => {
             console.log("new customer posted! success!");
+            window.location = "/"
             // window.location = "/";
         })
         .catch(err => {
