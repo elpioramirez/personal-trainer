@@ -7,7 +7,7 @@ import {getAllCustomers, getAllTrainers} from './actions';
 
 import NavDrawer from "./Components/NavDrawer";
 
-import AddCustomer from "./Routes/AddCustomer";
+import NewCustomer from "./Routes/NewCustomer";
 import Home from "./Routes/Home";
 import Customers from "./Routes/Customers";
 import Trainers from "./Routes/Trainers";
@@ -50,7 +50,7 @@ class App extends Component {
               <Route path="/customers" component={Customers}/>
               <Route path="/trainers" component={Trainers}/>
               <Route path="/calendar" component={Calendar}/>
-              <Route path="/addCustomer" component={AddCustomer}/>
+              <Route path="/NewCustomer" component={NewCustomer}/>
 
             </Switch>
           </div>

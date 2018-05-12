@@ -26,7 +26,7 @@ export default class NavDrawer extends React.Component {
         return (
             <div>
                 <AppBar
-                    title="Front"
+                    title="Jose's Gym"
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                     onClick={this.handleToggle}/>
                 <Drawer
@@ -40,7 +40,7 @@ export default class NavDrawer extends React.Component {
                     <MenuItem containerElement={< Link to = "/trainers" />}>Trainings</MenuItem>
                     <MenuItem
                         primaryText="Add A customer"
-                        containerElement={< Link to = "/addCustomer" />}/> {/* // <Link to="/customers">Customers</Link>
+                        containerElement={< Link to = "/NewCustomer" />}/> {/* // <Link to="/customers">Customers</Link>
                     // // // //
                     // <Link to="/trainers">Trainers</Link>
                     // // // //
