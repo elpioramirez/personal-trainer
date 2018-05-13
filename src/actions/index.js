@@ -91,7 +91,8 @@ export function getTrainingsById(path, dispatch) {
     return axios
         .get(path)
         .then(response => dispatch(receiveData(GET_TRAININGS_BY_ID, response.data.content)))
-        // .then(() => {     window.location = "/IndividualTraining" })
+        //opens up pop up
+        .then(() => dispatch({type: POP_ON}))
         .catch(err => {
             console.error(err);
 
