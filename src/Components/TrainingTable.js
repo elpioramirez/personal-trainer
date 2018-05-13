@@ -3,6 +3,13 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import * as moment from 'moment';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
+import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import CommunicationCall from 'material-ui/svg-icons/communication/call';
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import {indigo500} from 'material-ui/styles/colors';
+import CommunicationEmail from 'material-ui/svg-icons/communication/email';
+import ActionHome from 'material-ui/svg-icons/action/home';
 
 export default class TrainingTable extends Component {
     render() {
@@ -56,10 +63,33 @@ export default class TrainingTable extends Component {
                             showExpandableButton={true}/>
 
                         <CardText expandable={true}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium
-                            massa. Aliquam erat volutpat. Nulla facilisi. Donec vulputate interdum
-                            sollicitudin. Nunc lacinia auctor quam sed pellentesque. Aliquam dui mauris,
-                            mattis quis lacus id, pellentesque lobortis odio.
+
+                            <List>
+                                <ListItem
+                                    leftIcon={< CommunicationCall color = {
+                                    indigo500
+                                } />}
+                                    rightIcon={< CommunicationChatBubble />}
+                                    primaryText={value.phone}
+                                    secondaryText="Mobile"/>
+                                <ListItem
+                                    leftIcon={< CommunicationEmail color = {
+                                    indigo500
+                                } />}
+                                    primaryText={value.email}
+                                    secondaryText="Personal"/>
+
+                            </List>
+                            <Divider inset={true}/>
+                            <List>
+                                <ListItem
+                                    leftIcon={< ActionHome color = {
+                                    indigo500
+                                } />}
+                                    insetChildren={true}
+                                    primaryText={value.streetaddress}
+                                    secondaryText={value.city}/></List>
+
                         </CardText>
                     </Card>
                 )
