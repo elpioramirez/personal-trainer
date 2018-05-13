@@ -41,7 +41,7 @@ class PopUpById extends Component {
                 return {title: item.activity, start: original, end: added, allDay: false}
 
             })
-            return calendarContent = <BigCalendar
+            var calendarContent = <BigCalendar
                 step={15}
                 timeslots={8}
                 defaultView="agenda"

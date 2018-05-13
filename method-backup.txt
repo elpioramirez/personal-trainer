@@ -1,0 +1,21 @@
+
+        const newLocal = this.props.sessions;
+        if (newLocal === undefined) {
+            var calendarContent = <p>nothing</p>
+        } else {
+            const t2 = newLocal.map((item) => {
+                //correct date format JS
+                const original = moment(item.date)._d
+                // add the duration to the original date
+                const added = moment(moment(original).add(item.duration, 'm'))._d
+                //new object with the right format for calendar
+                return {title: item.activity, start: original, end: added, allDay: false}
+
+            })
+            var calendarContent = <BigCalendar
+                step={15}
+                timeslots={8}
+                defaultView="agenda"
+                defaultDate={new Date(2018, 0, 1)}
+                events={t2}/>
+        }
