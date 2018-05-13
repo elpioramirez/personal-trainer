@@ -79,8 +79,7 @@ export function addTraining(trainingSession) {
         .post(`${ROOT_URL}/trainings/`, trainingSession)
         .then(() => {
             console.log("new training sesh added! success!");
-            window.location = "/trainings"
-            // window.location = "/";
+            // window.location = "/trainings" window.location = "/";
         })
         .catch(err => {
             console.error(err);
