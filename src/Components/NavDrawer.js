@@ -3,8 +3,7 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-// import MenuList from 'material-ui/MenuList'; import RaisedButton from
-// 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
 import AppBar from 'material-ui/AppBar';
 
 export default class NavDrawer extends React.Component {
@@ -36,17 +35,15 @@ export default class NavDrawer extends React.Component {
                     onRequestChange={(open) => this.setState({open})}>
 
                     <MenuItem containerElement={< Link to = "/home" />}>Home</MenuItem>
+
                     <MenuItem containerElement={< Link to = "/customers" />}>Customers</MenuItem>
                     <MenuItem containerElement={< Link to = "/trainers" />}>Trainings</MenuItem>
-                    <MenuItem
-                        primaryText="Add A customer"
-                        containerElement={< Link to = "/NewCustomer" />}/> {/* // <Link to="/customers">Customers</Link>
-                    // // // //
-                    // <Link to="/trainers">Trainers</Link>
-                    // // // //
-                    // <Link to="/calendar">Calendar</Link>
-                    // // // //
-                    // <Link to="/addCustomer">Add a Customer</Link> */}
+                    <Divider/>
+                    <MenuItem containerElement={< Link to = "/NewCustomer" />}>Add A customer</MenuItem>
+                    <Divider/>
+                    <MenuItem containerElement={< Link to = "/AddTraining" />}>Add Training</MenuItem>
+                    <Divider/>
+
                 </Drawer>
             </div>
         );

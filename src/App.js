@@ -12,9 +12,9 @@ import Home from "./Routes/Home";
 import Customers from "./Routes/Customers";
 import Trainers from "./Routes/Trainers";
 import Calendar from "./Routes/Calendar";
-import IndividualTraining from "./Routes/IndividualTraining";
+import NewTraining from "./Routes/NewTraining";
 
-// import CustomerTable from "./Components/CustomerTable"
+// import IndividualTraining from "./Routes/IndividualTraining";
 
 class App extends Component {
   componentDidMount() {
@@ -37,13 +37,6 @@ class App extends Component {
 
         <BrowserRouter>
           <div>
-
-            {/* <Link to="/home">Home</Link>
-            <Link to="/customers">Customers</Link>
-            <Link to="/trainers">Trainers</Link>
-            <Link to="/calendar">Calendar</Link>
-            <Link to="/addCustomer">Add a Customer</Link> */}
-
             <NavDrawer/>
             <Switch>
               <Route exact path="/" component={Home}/>
@@ -52,13 +45,10 @@ class App extends Component {
               <Route path="/trainers" component={Trainers}/>
               <Route path="/calendar" component={Calendar}/>
               <Route path="/NewCustomer" component={NewCustomer}/>
-              <Route path="/IndividualTraining" component={IndividualTraining}/>
-
+              <Route path="/AddTraining" component={NewTraining}/>
             </Switch>
           </div>
         </BrowserRouter>
-        {/* <CustomerTable customers={this.state.customers}/> */}
-
       </div>
     );
   }

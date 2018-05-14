@@ -32,11 +32,11 @@ class PopUpById extends Component {
             var calendarContent = <p>nothing</p>
         } else {
             const t2 = newLocal.map((item) => {
-                //correct date format
+                //correct date format in JS
                 const original = moment(item.date)._d
-                // console.log(original);
+                // add the time duration to the original
                 const added = moment(moment(original).add(item.duration, 'm'))._d
-                // console.log("added " + moment(added)._d);
+                //create custom object
 
                 return {title: item.activity, start: original, end: added, allDay: false}
 
@@ -44,22 +44,10 @@ class PopUpById extends Component {
             var calendarContent = <BigCalendar
                 step={15}
                 timeslots={8}
-                defaultView="agenda"
+                defaultView="month"
                 defaultDate={new Date(2018, 4, 18)}
                 events={t2}/>
         }
-
-        //     [{         title: "My event",         allDay: false,         start: new
-        // Date(2018, 0, 1, 10, 0),         end: new Date(2018, 0, 1, 14, 0)     } ]
-        // const t1 = [     {         date: "2018-05-20T00:00:00.000+0000", duration:
-        // 60,         activity: "yoga"     }, {         date:
-        // "2018-05-23T00:00:00.000+0000",         duration: 120,         activity:
-        // "karate"     } ] console.log(t2); const goal = new Date(2018, 0, 1, 14, 0);
-        // const ttt = new Date(2018, 0, 1, 10, 0);
-        // console.log('===================================='); console.log("start " +
-        // ttt); console.log("end " + goal);
-        // console.log('===================================='); const test =
-        // original.map((item) => {     return console.log(item.date); })
 
         return (
             <div>
@@ -71,7 +59,9 @@ class PopUpById extends Component {
                     <Modal.Header closeButton>
                         <Modal.Title>Trainings By User</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>{calendarContent}</Modal.Body>
+                    <Modal.Body style={{
+                        height: 500
+                    }}>{calendarContent}</Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.handleClose}>Close</Button>
                     </Modal.Footer>

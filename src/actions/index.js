@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from 'moment';
 
 export const GET_ALL_CUSTOMERS = 'GET_ALL_CUSTOMERS';
 export const ADD_CUSTOMER = 'ADD_CUSTOMER';
@@ -96,4 +97,17 @@ export function getTrainingsById(path, dispatch) {
             console.error(err);
 
         });
+}
+
+export function handleCalendar(calendarObj) {
+    calendarObj.map((item) => {
+        //correct date format in JS
+        const original = moment(item.date)._d
+        // add the time duration to the original
+        const added = moment(moment(original).add(item.duration, 'm'))._d
+        //create custom object
+
+        return {title: item.activity, start: original, end: added, allDay: false}
+
+    })
 }
