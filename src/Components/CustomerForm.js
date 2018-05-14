@@ -1,6 +1,7 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form'
 import TextField from 'material-ui/TextField'
+// import {Button} from 'react-bootstrap';
 
 const validate = values => {
     const errors = {}
@@ -72,6 +73,7 @@ const MaterialUiForm = props => {
                 <button type="submit" disabled={pristine || submitting}>
                     Submit
                 </button>
+
                 <button type="button" disabled={pristine || submitting} onClick={reset}>
                     Clear Values
                 </button>
