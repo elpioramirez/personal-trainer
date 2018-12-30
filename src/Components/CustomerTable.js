@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SkyLight from 'react-skylight';
+// import SkyLight from 'react-skylight';
 import { Button, Modal } from 'react-bootstrap';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
