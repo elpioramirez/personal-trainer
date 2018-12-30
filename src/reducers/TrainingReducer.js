@@ -1,7 +1,22 @@
-import {GET_ALL_TRAINERS, ADD_TRAINING_TO_CUSTOMER, DELETE_TRAINING} from "../actions";
+import { GET_ALL_TRAINERS, ADD_TRAINING_TO_CUSTOMER, DELETE_TRAINING, GET_ALL_TRAINERS_REQ, GET_ALL_TRAINERS_X } from "../actions";
 
-export default function (state = {}, action) {
+const defaultState = {
+    trainers: [],
+    isReady: false
+}
+
+export default function (state = defaultState, action) {
     switch (action.type) {
+        case GET_ALL_TRAINERS_REQ:
+            return {
+                ...state,
+                isReady: true,
+            };
+        case GET_ALL_TRAINERS_X:
+            return {
+                ...state,
+                isReady: false,
+            };
         case GET_ALL_TRAINERS:
             return {
                 ...state,

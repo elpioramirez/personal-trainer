@@ -2,12 +2,17 @@ import axios from "axios";
 import moment from 'moment';
 
 export const GET_ALL_CUSTOMERS = 'GET_ALL_CUSTOMERS';
+export const GET_ALL_CUSTOMERS_REQ = 'GET_ALL_CUSTOMERS_REQ';
+export const GET_ALL_CUSTOMERS_X = 'GET_ALL_CUSTOMERS_X';
 export const ADD_CUSTOMER = 'ADD_CUSTOMER';
 export const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
 export const EDIT_CUSTOMER = 'EDIT_CUSTOMER';
 export const GET_TRAININGS_BY_ID = 'GET_TRAININGS_BY_ID'
 
 export const GET_ALL_TRAINERS = 'GET_ALL_TRAINERS';
+export const GET_ALL_TRAINERS_REQ = 'GET_ALL_TRAINERS_REQ';
+export const GET_ALL_TRAINERS_X = 'GET_ALL_TRAINERS_X';
+
 export const ADD_TRAINING_TO_CUSTOMER = 'ADD_TRAINING_TO_CUSTOMER';
 export const DELETE_TRAINING = 'DELETE_TRAINING';
 
@@ -17,16 +22,39 @@ export const POP_OFF = 'POP_OFF';
 const ROOT_URL = 'https://customerrest.herokuapp.com/api'
 
 function receiveData(request, json) {
-    return {type: request, payload: json};
+    return { type: request, payload: json };
 }
 
-export function getAllCustomers(dispatch) {
-    return axios
-        .get(`${ROOT_URL}/customers`)
-        .then(response => dispatch(receiveData(GET_ALL_CUSTOMERS, response.data.content)));
+export const getAllCustomers_REQ = () => ({
+    type: GET_ALL_CUSTOMERS_REQ,
+});
 
-}
+export const getAllCustomers_X = () => ({
+    type: GET_ALL_CUSTOMERS_X,
+});
 
+export function getAllCustomers() {
+    return async (dispatch, getState) => {
+        const { customer } = getState();
+        // console.log(customer.isReady)
+        if (!customer.isReady) {
+            dispatch(getAllCustomers_REQ());
+            await axios
+                .get(`${ROOT_URL}/customers`)
+                .then(response => dispatch(receiveData(GET_ALL_CUSTOMERS, response.data.content)));
+        }
+    }
+};
+
+// export async function getAllCustomers(dispatch) {
+//     dispatch(getAllCustomers_REQ());
+//     const { customer } = getState();
+//     console.log(customer.isReady)
+//     return await axios
+//         .get(`${ROOT_URL}/customers`)
+//         .then(response => dispatch(receiveData(GET_ALL_CUSTOMERS, response.data.content)));
+
+// }
 export function addCustomer(newCustomer) {
     return axios
         .post(`${ROOT_URL}/customers/`, newCustomer)
@@ -58,12 +86,34 @@ export function editCustomer(id, dispatch) {
         });
 }
 
-export function getAllTrainers(dispatch) {
-    return axios
-        .get("https://customerrest.herokuapp.com/gettrainings")
-        .then(response => dispatch(receiveData(GET_ALL_TRAINERS, response.data)));
+export const getAllTrainers_REQ = () => ({
+    type: GET_ALL_TRAINERS_REQ,
+});
 
-}
+export const getAllTrainers_X = () => ({
+    type: GET_ALL_TRAINERS_X,
+});
+
+// export async function getAllTrainers(dispatch) {
+//     dispatch(getAllTrainers_REQ)
+//     return await axios
+//         .get("https://customerrest.herokuapp.com/gettrainings")
+//         .then(response => dispatch(receiveData(GET_ALL_TRAINERS, response.data)));
+
+// }
+
+export function getAllTrainers() {
+    return async (dispatch, getState) => {
+        const { training } = getState();
+        // console.log(customer.isReady)
+        if (!training.isReady) {
+            dispatch(getAllTrainers_REQ());
+            await axios
+                .get("https://customerrest.herokuapp.com/gettrainings")
+                .then(response => dispatch(receiveData(GET_ALL_TRAINERS, response.data)));
+        }
+    }
+};
 
 export function deleteTraining(id, dispatch) {
     return axios
@@ -92,7 +142,7 @@ export function getTrainingsById(path, dispatch) {
         .get(path)
         .then(response => dispatch(receiveData(GET_TRAININGS_BY_ID, response.data.content)))
         //opens up pop up
-        .then(() => dispatch({type: POP_ON}))
+        .then(() => dispatch({ type: POP_ON }))
         .catch(err => {
             console.error(err);
 
@@ -107,7 +157,7 @@ export function handleCalendar(calendarObj) {
         const added = moment(moment(original).add(item.duration, 'm'))._d
         //create custom object
 
-        return {title: item.activity, start: original, end: added, allDay: false}
+        return { title: item.activity, start: original, end: added, allDay: false }
 
     })
 }

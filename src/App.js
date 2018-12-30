@@ -1,9 +1,9 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {connect} from "react-redux";
-import {getAllCustomers, getAllTrainers} from './actions';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { getAllCustomers, getAllTrainers } from './actions';
 
 import NavDrawer from "./Components/NavDrawer";
 
@@ -32,20 +32,20 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
+          <img src={logo} className="App-logo" alt="logo" />
         </header>
 
         <BrowserRouter>
           <div>
-            <NavDrawer/>
+            <NavDrawer />
             <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/home" component={Home}/>
-              <Route path="/customers" component={Customers}/>
-              <Route path="/trainers" component={Trainers}/>
-              <Route path="/calendar" component={Calendar}/>
-              <Route path="/NewCustomer" component={NewCustomer}/>
-              <Route path="/AddTraining" component={NewTraining}/>
+              <Route exact path="/" component={Home} />
+              <Route path="/home" component={Home} />
+              <Route path="/customers" component={Customers} />
+              <Route path="/trainers" component={Trainers} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path="/NewCustomer" component={NewCustomer} />
+              <Route path="/AddTraining" component={NewTraining} />
             </Switch>
           </div>
         </BrowserRouter>
@@ -55,14 +55,14 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  return {customers: state.customer.customers, trainings: state.training.trainers};
+  return { customers: state.customer.customers, trainings: state.training.trainers };
 };
 
 //fetch needed data
 const mapDispatchToProps = dispatch => {
   return {
-    getAllCustomers: () => getAllCustomers(dispatch),
-    getAllTrainers: () => getAllTrainers(dispatch)
+    getAllCustomers: () => { dispatch(getAllCustomers()); },
+    getAllTrainers: () => { dispatch(getAllTrainers()); }
 
   };
 };
