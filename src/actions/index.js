@@ -25,6 +25,7 @@ export const GET_ALL_TRAINERS_X = 'GET_ALL_TRAINERS_X';
 
 export const ADD_TRAINING_TO_CUSTOMER = 'ADD_TRAINING_TO_CUSTOMER';
 export const DELETE_TRAINING = 'DELETE_TRAINING';
+export const DELETE_TRAINING_OK = 'DELETE_TRAINING_OK';
 
 export const POP_ON = 'POP_ON';
 export const POP_OFF = 'POP_OFF';
@@ -152,13 +153,6 @@ export const getAllTrainers_X = () => ({
     type: GET_ALL_TRAINERS_X,
 });
 
-// export async function getAllTrainers(dispatch) {
-//     dispatch(getAllTrainers_REQ)
-//     return await axios
-//         .get("https://customerrest.herokuapp.com/gettrainings")
-//         .then(response => dispatch(receiveData(GET_ALL_TRAINERS, response.data)));
-
-// }
 
 export function getAllTrainers() {
     return async (dispatch, getState) => {
@@ -182,17 +176,33 @@ export function deleteTraining(id, dispatch) {
         });
 }
 
-export function addTraining(trainingSession) {
-    return axios
-        .post(`${ROOT_URL}/trainings/`, trainingSession)
-        .then(() => {
-            window.location = "/trainers"
-            // console.log("new training sesh added! success!"); window.location =
-            // "/trainings" window.location = "/";
-        })
-        .catch(err => {
-            console.error(err);
-        });
+export function addTraining(trainingSession, history) {
+
+    return async (dispatch, getState) => {
+        console.log(trainingSession);
+
+        axios
+            .post(`${ROOT_URL}/trainings/`, trainingSession)
+            .then((response) => {
+                console.log(response)
+                window.location = "/trainers"
+                // console.log("new training sesh added! success!"); window.location =
+                // "/trainings" window.location = "/";
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
+    // return axios
+    //     .post(`${ROOT_URL}/trainings/`, trainingSession)
+    //     .then(() => {
+    //         window.location = "/trainers"
+    //         // console.log("new training sesh added! success!"); window.location =
+    //         // "/trainings" window.location = "/";
+    //     })
+    //     .catch(err => {
+    //         console.error(err);
+    //     });
 }
 
 export function getTrainingsById(path, dispatch) {

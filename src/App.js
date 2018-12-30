@@ -14,22 +14,15 @@ import Trainers from "./Routes/Trainers";
 import Calendar from "./Routes/Calendar";
 import NewTraining from "./Routes/NewTraining";
 
-// import IndividualTraining from "./Routes/IndividualTraining";
 
 class App extends Component {
   componentDidMount() {
-
     this
       .props
       .getAllCustomers();
     this
       .props
       .getAllTrainers();
-
-    if (!this.props.customers.isReady) {
-      console.log('not ready')
-    }
-
   }
 
   render() {

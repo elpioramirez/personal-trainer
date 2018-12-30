@@ -1,5 +1,5 @@
 import React from 'react'
-import {Field, reduxForm} from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import TextField from 'material-ui/TextField'
 import DatePicker from "material-ui/DatePicker";
 
@@ -30,7 +30,7 @@ const renderTextField = ({
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
-    {...custom}/>)
+    {...custom} />)
 
 const renderDatePicker = ({
     input,
@@ -47,30 +47,30 @@ const renderDatePicker = ({
     hintText="creationDate"
     mode="landscape"
     value={input.value !== ""
-    ? new Date(input.value)
-    : null}
+        ? new Date(input.value)
+        : null}
     onChange={(event, value) => {
-    console.log(value);
-    input.onChange(value);
-}}
-    children={children}/>);
+        //console.log(value);
+        input.onChange(value);
+    }}
+    children={children} />);
 
 const TrainingForm = props => {
-    const {handleSubmit, pristine, reset, submitting} = props
+    const { handleSubmit, pristine, reset, submitting } = props
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <Field name="date" component={renderDatePicker} hintText="date"/>
+                <Field name="date" component={renderDatePicker} hintText="date" />
             </div>
             <div>
-                <Field name="activity" component={renderTextField} label="activity"/>
+                <Field name="activity" component={renderTextField} label="activity" />
             </div>
             <div>
-                <Field name="duration" component={renderTextField} label="duration"/>
+                <Field name="duration" component={renderTextField} label="duration" />
             </div>
 
             <div>
-                <Field name="customer" component={renderTextField} label="customer"/>
+                <Field name="customer" component={renderTextField} label="customer" />
             </div>
 
             <div>

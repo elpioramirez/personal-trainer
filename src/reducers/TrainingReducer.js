@@ -1,4 +1,4 @@
-import { GET_ALL_TRAINERS, ADD_TRAINING_TO_CUSTOMER, DELETE_TRAINING, GET_ALL_TRAINERS_REQ, GET_ALL_TRAINERS_X } from "../actions";
+import { GET_ALL_TRAINERS, ADD_TRAINING_TO_CUSTOMER, DELETE_TRAINING, GET_ALL_TRAINERS_REQ, GET_ALL_TRAINERS_X, DELETE_TRAINING_OK } from "../actions";
 
 const defaultState = {
     trainers: [],
@@ -33,6 +33,11 @@ export default function (state = defaultState, action) {
             return {
                 ...state,
                 isLoading: true
+            }
+        case DELETE_TRAINING_OK:
+            return {
+                ...state,
+                isLoading: false
             }
 
 
