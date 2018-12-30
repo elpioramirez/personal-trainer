@@ -12,7 +12,7 @@ class Trainers extends Component {
         return (
             <div>
                 <Caption title="All Trainings" />
-                {!this.props.isReady ? (<Loader />) : (
+                {this.props.isReady ? (<Loader />) : (
                     <TrainingTable
                         trainings={this.props.trainings}
                         deleteTraining={this.props.deleteTraining}

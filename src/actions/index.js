@@ -4,9 +4,19 @@ import moment from 'moment';
 export const GET_ALL_CUSTOMERS = 'GET_ALL_CUSTOMERS';
 export const GET_ALL_CUSTOMERS_REQ = 'GET_ALL_CUSTOMERS_REQ';
 export const GET_ALL_CUSTOMERS_X = 'GET_ALL_CUSTOMERS_X';
+
 export const ADD_CUSTOMER = 'ADD_CUSTOMER';
+export const ADD_CUSTOMER_REQ = 'ADD_CUSTOMER_REQ';
+export const ADD_CUSTOMER_X = 'ADD_CUSTOMER_X';
+
+
 export const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
+export const DELETE_CUSTOMER_REQ = 'DELETE_CUSTOMER_REQ';
+export const DELETE_CUSTOMER_X = 'DELETE_CUSTOMER_X';
+
+
 export const EDIT_CUSTOMER = 'EDIT_CUSTOMER';
+
 export const GET_TRAININGS_BY_ID = 'GET_TRAININGS_BY_ID'
 
 export const GET_ALL_TRAINERS = 'GET_ALL_TRAINERS';
@@ -35,46 +45,94 @@ export const getAllCustomers_X = () => ({
 
 export function getAllCustomers() {
     return async (dispatch, getState) => {
-        const { customer } = getState();
-        // console.log(customer.isReady)
-        if (!customer.isReady) {
-            dispatch(getAllCustomers_REQ());
-            await axios
-                .get(`${ROOT_URL}/customers`)
-                .then(response => dispatch(receiveData(GET_ALL_CUSTOMERS, response.data.content)));
-        }
+        // const { customer } = getState();
+        // // console.log(customer.isLoading)
+        // if (!customer.isLoading) {
+
+        // }
+
+        dispatch(getAllCustomers_REQ());
+        await axios
+            .get(`${ROOT_URL}/customers`)
+            .then(response => dispatch(receiveData(GET_ALL_CUSTOMERS, response.data.content)));
     }
 };
 
-// export async function getAllCustomers(dispatch) {
-//     dispatch(getAllCustomers_REQ());
-//     const { customer } = getState();
-//     console.log(customer.isReady)
-//     return await axios
-//         .get(`${ROOT_URL}/customers`)
-//         .then(response => dispatch(receiveData(GET_ALL_CUSTOMERS, response.data.content)));
+export const addCustomer_REQ = (person) => (
+    {
+        type: ADD_CUSTOMER_REQ,
+        person: person
+    }
+);
 
-// }
-export function addCustomer(newCustomer) {
-    return axios
-        .post(`${ROOT_URL}/customers/`, newCustomer)
-        .then(() => {
-            console.log("new customer posted! success!");
-            window.location = "/customers"
-            // window.location = "/";
-        })
-        .catch(err => {
-            console.error(err);
-        });
-}
+export const addCustomer_X = (error) => (
+    {
+        type: ADD_CUSTOMER_X,
+        error: error
+    }
+);
 
-export function deleteCustumer(deleteURL, dispatch) {
-    return axios
-        .delete(deleteURL)
-        .then(response => dispatch(receiveData(DELETE_CUSTOMER, response.data)))
-        .catch(err => {
-            console.error(err);
-        });
+export const addCustomer = (newCustomer) => {
+    return async (dispatch, getState) => {
+
+        const { customer } = getState();
+
+        if (!customer.isLoading) {
+            dispatch(addCustomer_REQ(newCustomer));
+            const url = `${ROOT_URL}/customers`;
+            axios.post(url, newCustomer)
+                .then(function (response) {
+                    //
+
+                    if (response.status === 201) {
+                        //console.log('working');
+                        dispatch(getAllCustomers());
+                    }
+                })
+                .catch(function (error) {
+                    dispatch(ADD_CUSTOMER_X(error));
+                });
+        }
+    }
+
+};
+
+
+
+export const deleteCustumer_REQ = (url) => (
+    {
+        type: DELETE_CUSTOMER_REQ,
+        url: url
+    }
+);
+export function deleteCustumer(deleteURL) {
+
+    return (dispatch, getState) => {
+
+        const { customer } = getState();
+
+        if (!customer.isLoading) {
+            dispatch(deleteCustumer_REQ(deleteURL));
+
+            axios
+                .delete(deleteURL)
+                .then(response => {
+                    console.log(response);
+                    if (response.status === 204) {
+                        dispatch(getAllCustomers());
+                    }
+                }
+                )
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+
+
+
+    }
+
+
 }
 
 export function editCustomer(id, dispatch) {
@@ -105,8 +163,8 @@ export const getAllTrainers_X = () => ({
 export function getAllTrainers() {
     return async (dispatch, getState) => {
         const { training } = getState();
-        // console.log(customer.isReady)
-        if (!training.isReady) {
+        // console.log(customer.isLoading)
+        if (!training.isLoading) {
             dispatch(getAllTrainers_REQ());
             await axios
                 .get("https://customerrest.herokuapp.com/gettrainings")

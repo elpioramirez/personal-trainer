@@ -2,7 +2,7 @@ import { GET_ALL_TRAINERS, ADD_TRAINING_TO_CUSTOMER, DELETE_TRAINING, GET_ALL_TR
 
 const defaultState = {
     trainers: [],
-    isReady: false
+    isLoading: false
 }
 
 export default function (state = defaultState, action) {
@@ -10,25 +10,31 @@ export default function (state = defaultState, action) {
         case GET_ALL_TRAINERS_REQ:
             return {
                 ...state,
-                isReady: true,
+                isLoading: true,
             };
         case GET_ALL_TRAINERS_X:
             return {
                 ...state,
-                isReady: false,
+                isLoading: false,
             };
         case GET_ALL_TRAINERS:
             return {
                 ...state,
-                trainers: action.payload
+                trainers: action.payload,
+                isLoading: false
             };
         case ADD_TRAINING_TO_CUSTOMER:
             return {
                 ...state,
-                trainers: action.payload
+                trainers: action.payload,
+                isLoading: true,
             };
         case DELETE_TRAINING:
-            return state;
+            return {
+                ...state,
+                isLoading: true
+            }
+
 
         default:
             return state;

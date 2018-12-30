@@ -1,9 +1,10 @@
-import { GET_ALL_CUSTOMERS, ADD_CUSTOMER, DELETE_CUSTOMER, GET_ALL_CUSTOMERS_REQ, GET_ALL_CUSTOMERS_X } from "../actions";
+import { GET_ALL_CUSTOMERS, ADD_CUSTOMER, DELETE_CUSTOMER, GET_ALL_CUSTOMERS_REQ, GET_ALL_CUSTOMERS_X, ADD_CUSTOMER_X, DELETE_CUSTOMER_REQ, ADD_CUSTOMER_REQ } from "../actions";
 
 const defaultState = {
     customers: [],
     newCustomer: {},
-    isReady: false
+    isLoading: false,
+    error: null
 }
 
 export default function (state = defaultState, action) {
@@ -11,25 +12,49 @@ export default function (state = defaultState, action) {
         case GET_ALL_CUSTOMERS_REQ:
             return {
                 ...state,
-                isReady: true,
+                isLoading: true,
             };
         case GET_ALL_CUSTOMERS_X:
             return {
                 ...state,
-                isReady: false,
+                isLoading: false,
             };
         case GET_ALL_CUSTOMERS:
             return {
                 ...state,
                 customers: action.payload,
+                isLoading: false
+            };
+        case ADD_CUSTOMER_REQ:
+            return {
+                ...state,
+                isLoading: true,
+                newCustomer: action.person
+            };
+        case ADD_CUSTOMER_X:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.error
             };
         case ADD_CUSTOMER:
             return {
                 ...state,
-                newCustomer: action.payload
+                isLoading: false,
+                newCustomer: action.person
             };
+
+        case DELETE_CUSTOMER_REQ:
+            return {
+                ...state,
+                isLoading: true,
+                deleteUrl: action.url
+            }
         case DELETE_CUSTOMER:
-            return state;
+            return {
+                ...state,
+                isLoading: false,
+            }
         default:
             return state;
     }

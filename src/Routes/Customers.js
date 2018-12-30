@@ -21,7 +21,7 @@ class Customers extends Component {
             <div>
                 <PopUpById />
                 <Caption title="Customers" />
-                {!this.props.isReady ? (<Loader />) : (
+                {this.props.isReady ? (<Loader />) : (
                     <CustomerTable
                         customers={this.props.customers}
                         deleteCustumer={this.props.deleteCustumer}
@@ -40,9 +40,14 @@ class Customers extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteCustumer: id => deleteCustumer(id, dispatch),
-        getAllCustomers: () => getAllCustomers(dispatch),
-        addCustomer: newCustomer => addCustomer(newCustomer, dispatch),
+
+        addCustomer: newCustomer => {
+            dispatch(addCustomer(newCustomer))
+        },
+        getAllCustomers: () => dispatch(getAllCustomers),
+        deleteCustumer: id => {
+            dispatch(deleteCustumer(id))
+        },
         getTrainingsById: path => getTrainingsById(path, dispatch)
     };
 };

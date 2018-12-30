@@ -26,6 +26,10 @@ class App extends Component {
       .props
       .getAllTrainers();
 
+    if (!this.props.customers.isReady) {
+      console.log('not ready')
+    }
+
   }
 
   render() {

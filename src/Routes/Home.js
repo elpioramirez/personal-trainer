@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import Caption from '../Components/Caption';
 import PopUpById from '../Components/PopUpById';
+import AniLoader from '../Components/AniLoader';
 
 
 class Home extends Component {
     render() {
         return (
             <div>
-                <Caption title="Home" />
+                {/* <Caption title="Home" /> */}
                 <PopUpById />
+                <AniLoader />
             </div>
         );
     }

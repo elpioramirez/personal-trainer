@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
+import React, { Component } from 'react';
+import { connect } from "react-redux";
 import Caption from '../Components/Caption';
-import CustomerForm from '../Components/CustomerForm';
-import {addCustomer} from '../actions';
+
+import { addCustomer } from '../actions';
 
 class NewCustomer extends Component {
     render() {
         return (
             <div>
-                <Caption title="Add a new Customer"/>
-                <CustomerForm onSubmit={this.props.addCustomer}/>
+                <Caption title="Add a new Customer" />
+
             </div>
         );
     }
@@ -18,10 +18,15 @@ class NewCustomer extends Component {
 const mapStateToProps = () => {
     return {};
 };
-const mapDispatchToProps = dispatch => {
-    return {
-        addCustomer: newCustomer => addCustomer(newCustomer, dispatch)
-    };
-};
+const mapDispatchToProps = dispatch => ({
+    addNewCustomer: (newCustomer) => {
+        // add the project
+        dispatch(addCustomer(newCustomer));
+
+        // // reset the form after submit
+        // dispatch(reset('projectAddForm'));
+    }
+    // addCustomer: newCustomer => addCustomer(newCustomer, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewCustomer);
