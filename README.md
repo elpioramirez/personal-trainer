@@ -9,7 +9,7 @@ back-end - Spring MCV
 
 ## Live Demo
 
-https:/gym-trainer.surge.sh
+https://gym-trainer.surge.sh
 
 
 ## Getting Started
