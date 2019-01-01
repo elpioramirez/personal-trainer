@@ -2,14 +2,14 @@
 
 # Personal Trainer Tracking System 
 
-Add Edit Delete and View customers and tranings while being able to  keep track of appointment sessions 
+Add Edit Delete and View customers and trainings while being able to  keep track of appointment sessions 
 
 front-end - React.JS + Redux
 back-end - Spring MCV
 
 ## Live Demo
 
-https://personal-trainer.surge.sh/
+https:/gym-trainer.surge.sh
 
 
 ## Getting Started
