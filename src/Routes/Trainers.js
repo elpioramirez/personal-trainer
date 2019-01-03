@@ -12,7 +12,7 @@ class Trainers extends Component {
         return (
             <div>
                 <Caption title="All Trainings" />
-                {this.props.isReady ? (<Loader />) : (
+                {this.props.isLoading ? (<Loader />) : (
                     <TrainingTable
                         trainings={this.props.trainings}
                         deleteTraining={this.props.deleteTraining}
@@ -26,15 +26,14 @@ class Trainers extends Component {
 const mapStateToProps = state => {
     return {
         trainings: state.training.trainers,
-        isReady: state.training.isReady
+        isLoading: state.training.isLoading
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getAllTrainers: () => getAllTrainers(dispatch),
-        deleteTraining: id => deleteTraining(id, dispatch),
-        getTrainingsById: path => deleteTraining(path, dispatch)
+        getAllTrainers: () => { dispatch(getAllTrainers()) },
+        deleteTraining: id => { dispatch(deleteTraining(id)) }
     };
 };
 

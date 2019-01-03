@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from 'moment';
 
+
 export const GET_ALL_CUSTOMERS = 'GET_ALL_CUSTOMERS';
 export const GET_ALL_CUSTOMERS_REQ = 'GET_ALL_CUSTOMERS_REQ';
 export const GET_ALL_CUSTOMERS_X = 'GET_ALL_CUSTOMERS_X';
@@ -35,7 +36,7 @@ const ROOT_URL = 'https://customerrest.herokuapp.com/api'
 function receiveData(request, json) {
     return { type: request, payload: json };
 }
-
+//customers
 export const getAllCustomers_REQ = () => ({
     type: GET_ALL_CUSTOMERS_REQ,
 });
@@ -46,12 +47,6 @@ export const getAllCustomers_X = () => ({
 
 export function getAllCustomers() {
     return async (dispatch, getState) => {
-        // const { customer } = getState();
-        // // console.log(customer.isLoading)
-        // if (!customer.isLoading) {
-
-        // }
-
         dispatch(getAllCustomers_REQ());
         await axios
             .get(`${ROOT_URL}/customers`)
@@ -98,8 +93,6 @@ export const addCustomer = (newCustomer) => {
 
 };
 
-
-
 export const deleteCustumer_REQ = (url) => (
     {
         type: DELETE_CUSTOMER_REQ,
@@ -144,7 +137,7 @@ export function editCustomer(id, dispatch) {
             console.error(err);
         });
 }
-
+//trainers
 export const getAllTrainers_REQ = () => ({
     type: GET_ALL_TRAINERS_REQ,
 });
@@ -152,7 +145,12 @@ export const getAllTrainers_REQ = () => ({
 export const getAllTrainers_X = () => ({
     type: GET_ALL_TRAINERS_X,
 });
-
+export const deleteTrainer = (id) => (
+    {
+        type: DELETE_TRAINING,
+        deletedTrainer: id
+    }
+);
 
 export function getAllTrainers() {
     return async (dispatch, getState) => {
@@ -167,16 +165,25 @@ export function getAllTrainers() {
     }
 };
 
-export function deleteTraining(id, dispatch) {
-    return axios
-        .delete(`${ROOT_URL}/trainings/${id}`)
-        .then(response => dispatch(receiveData(DELETE_TRAINING, response.data)))
-        .catch(err => {
-            console.error(err);
-        });
+export function deleteTraining(id) {
+
+    return (dispatch, getState) => {
+        dispatch(deleteTrainer(id));
+        axios
+            .delete(`${ROOT_URL}/trainings/${id}`)
+            .then(() => dispatch(getAllTrainers()))
+    }
+    // return axios
+    //     .delete(`${ROOT_URL}/trainings/${id}`)
+    //     .then(() => dispatch(getAllTrainers()))
+
+    // .then(response => dispatch(receiveData(DELETE_TRAINING, response.data)))
+    // .catch(err => {
+    //     console.error(err);
+    // });
 }
 
-export function addTraining(trainingSession, history) {
+export function addTraining(trainingSession) {
 
     return async (dispatch, getState) => {
         console.log(trainingSession);
@@ -185,7 +192,8 @@ export function addTraining(trainingSession, history) {
             .post(`${ROOT_URL}/trainings/`, trainingSession)
             .then((response) => {
                 console.log(response)
-                window.location = "/trainers"
+                window.location = "/"
+                // window.location = "/trainers"
                 // console.log("new training sesh added! success!"); window.location =
                 // "/trainings" window.location = "/";
             })

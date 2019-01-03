@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
@@ -11,7 +11,7 @@ import NewCustomer from "./Routes/NewCustomer";
 import Home from "./Routes/Home";
 import Customers from "./Routes/Customers";
 import Trainers from "./Routes/Trainers";
-import Calendar from "./Routes/Calendar";
+// import Calendar from "./Routes/Calendar";
 import NewTraining from "./Routes/NewTraining";
 
 
@@ -28,10 +28,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-
         <BrowserRouter>
           <div>
             <NavDrawer />
@@ -40,7 +36,7 @@ class App extends Component {
               <Route path="/home" component={Home} />
               <Route path="/customers" component={Customers} />
               <Route path="/trainers" component={Trainers} />
-              <Route path="/calendar" component={Calendar} />
+              {/* <Route path="/calendar" component={Calendar} /> */}
               <Route path="/NewCustomer" component={NewCustomer} />
               <Route path="/AddTraining" component={NewTraining} />
             </Switch>

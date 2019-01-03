@@ -10,13 +10,12 @@ class NewTraining extends Component {
             <div>
                 <Caption title="new training" />
                 <code>https://customerrest.herokuapp.com/api/customers/</code>
-
-
                 <TrainingForm
                     // //passes the history object from the Router - needed for page redirection
                     // history={this.props.history}
                     customerList={this.props.customers}
                     onSubmit={this.props.addTraining}
+                    history={this.props.history}
                 // onSubmit={(e) => console.log(e)}
 
                 />
@@ -26,10 +25,5 @@ class NewTraining extends Component {
 }
 
 const mapStateToProps = state => ({ customers: state.customer.custumers });
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         addTraining: newTraining => addTraining(newTraining, dispatch)
-//     };
-// };
 
 export default connect(mapStateToProps, { addTraining })(NewTraining);

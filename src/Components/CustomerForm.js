@@ -87,13 +87,13 @@ const styles = {
 export default class PeopleAdd extends React.Component {
     state = {
         open: false,
-        firstname: "TEST",
-        lastname: "Jesssstt",
-        streetaddress: "test",
-        postcode: "123123",
-        city: "dallas",
-        email: "dalls@g.com",
-        phone: "123123",
+        firstname: "",
+        lastname: "",
+        streetaddress: "",
+        postcode: "",
+        city: "",
+        email: "",
+        phone: "",
     };
 
 

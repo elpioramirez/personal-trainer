@@ -2,7 +2,9 @@ import { GET_ALL_TRAINERS, ADD_TRAINING_TO_CUSTOMER, DELETE_TRAINING, GET_ALL_TR
 
 const defaultState = {
     trainers: [],
-    isLoading: false
+    isLoading: false,
+    deletedTrainer: null,
+
 }
 
 export default function (state = defaultState, action) {
@@ -32,7 +34,7 @@ export default function (state = defaultState, action) {
         case DELETE_TRAINING:
             return {
                 ...state,
-                isLoading: true
+                deletedTrainer: action.deletedTrainer
             }
         case DELETE_TRAINING_OK:
             return {

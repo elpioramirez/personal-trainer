@@ -21,7 +21,7 @@ class Customers extends Component {
             <div>
                 <PopUpById />
                 <Caption title="Customers" />
-                {this.props.isReady ? (<Loader />) : (
+                {this.props.isLoading ? (<Loader />) : (
                     <CustomerTable
                         customers={this.props.customers}
                         deleteCustumer={this.props.deleteCustumer}
@@ -55,7 +55,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         customers: state.customer.customers,
-        isReady: state.customer.isReady
+        isLoading: state.customer.isLoading
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Customers);
