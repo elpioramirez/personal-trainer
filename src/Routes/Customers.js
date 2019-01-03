@@ -38,13 +38,20 @@ class Customers extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        customers: state.customer.customers,
+        isLoading: state.customer.isLoading
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
 
         addCustomer: newCustomer => {
             dispatch(addCustomer(newCustomer))
         },
-        getAllCustomers: () => dispatch(getAllCustomers),
+        getAllCustomers: () => dispatch(getAllCustomers()),
         deleteCustumer: id => {
             dispatch(deleteCustumer(id))
         },
@@ -52,10 +59,5 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const mapStateToProps = state => {
-    return {
-        customers: state.customer.customers,
-        isLoading: state.customer.isLoading
-    };
-};
+
 export default connect(mapStateToProps, mapDispatchToProps)(Customers);

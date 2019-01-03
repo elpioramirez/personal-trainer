@@ -7,7 +7,6 @@ class Home extends Component {
     render() {
         return (
             <div>
-                {/* <Caption title="Home" /> */}
                 <PopUpById />
                 <AniLoader />
             </div>

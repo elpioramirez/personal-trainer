@@ -4,7 +4,6 @@ const defaultState = {
     trainers: [],
     isLoading: false,
     deletedTrainer: null,
-
 }
 
 export default function (state = defaultState, action) {

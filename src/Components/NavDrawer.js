@@ -33,9 +33,6 @@ export default class NavDrawer extends React.Component {
                     width={200}
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({ open })}>
-
-                    <MenuItem containerElement={< Link to="/home" />}>Home</MenuItem>
-
                     <Divider />
                     <MenuItem containerElement={< Link to="/customers" />}>Customers</MenuItem>
                     <Divider />

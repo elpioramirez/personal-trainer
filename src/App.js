@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getAllCustomers, getAllTrainers } from './actions';
 
@@ -26,14 +26,28 @@ class App extends Component {
   }
 
   render() {
+    const { customers, trainings } = this.props;
+    //once all data is present redirect to trainers view
+    let allDataFetched = false;
+    if (customers.length !== 0 && trainings.length !== 0) {
+      allDataFetched = true;
+    }
+
     return (
       <div className="App">
         <BrowserRouter>
           <div>
             <NavDrawer />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/home" component={Home} />
+              {/* <Route exact path="/" component={Home} /> */}
+              <Route exact path="/" render={() => (
+                allDataFetched ? (
+                  <Redirect to="/trainers" />
+                ) : (
+                    <Home />
+                  )
+              )} />
+              {/* <Route path="/home" component={Home} /> */}
               <Route path="/customers" component={Customers} />
               <Route path="/trainers" component={Trainers} />
               {/* <Route path="/calendar" component={Calendar} /> */}
